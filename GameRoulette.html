@@ -738,16 +738,11 @@ function startSpin() {
   crazyMode = document.getElementById('crazyToggle').classList.contains('active');
 
   spinStart = performance.now();
-  spinDir = Math.random() > 0.5 ? 1 : -1;
-  
+
   spinDir = 1;
   if (crazyMode) {
     spinDir = Math.random() > 0.5 ? 1 : -1;
   }
-
-  // Peak velocity: enough rotations to last the full duration
-  const totalRot = Math.PI * 2 * (6 + Math.random() * 8); // 6–14 full spins worth of "peak"
-  angularVelocity = (totalRot / spinDuration) * 2; // will be modulated by easing
 
   lastDirChange = spinStart;
   dirChangeInterval = crazyMode ? (2000 + Math.random() * 4000) : Infinity;
@@ -768,11 +763,11 @@ function animLoop(ts) {
 
   const elapsed = ts - spinStart;
   const t = Math.min(elapsed / spinDuration, 1);
-
-  // Easing: ease-in for first 10%, full speed mid, ease-out last 20%
+  const accelTime = 10000;
   let speedFactor;
-  if (t < 0.10) {
-    speedFactor = t / 0.10; // ramp up
+
+  if (elapsed < accelTime) {
+    speedFactor = Math.min(2 * elapsed / accelTime, 1);
   } else if (t < 0.80) {
     speedFactor = 1;
   } else {
