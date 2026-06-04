@@ -585,6 +585,7 @@ let games = [];
 let spinning = false;
 let currentAngle = 0;      // radians
 let angularVelocity = 0;   // radians per ms
+let maxSpeed = null;
 let spinDir = 1;           // 1 = clockwise, -1 = counter
 let spinStart = null;
 let spinDuration = 3 * 60 * 1000;
@@ -597,6 +598,15 @@ let lastTs = null;
 let pointerAngle = 0;      // visual pointer wobble angle
 let pointerDir = 1;
 let spinEndTimeout = null;
+
+// Smooth rotation speed change for better randomization
+let currentSpeed = 1;
+let targetSpeed = 1;
+let lastSpeedChange = 0;
+
+// Randomization analysis
+let totalRotation = 0;
+let prevAngle = 0;
 
 // Neon color palette for wheel segments
 const COLORS = [
@@ -705,8 +715,16 @@ function parseGames(text) {
     .filter(l => l.length > 0 && !l.startsWith('#'));
 }
 
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+}
+
 function updateGames() {
   games = parseGames(document.getElementById('gamesInput').value);
+  //shuffle(games);
   drawWheel();
 }
 
@@ -728,11 +746,17 @@ function startSpin() {
     return;
   }
 
+  // Reset randomization analysis
+  totalRotation = 0;
+  prevAngle = currentAngle;
+
   spinning = true;
   document.getElementById('spinBtn').disabled = true;
   document.getElementById('stopBtn').classList.add('visible');
   canvas.classList.add('spinning');
   document.getElementById('resultText').textContent = '🎲 Вибираємо…';
+
+  maxSpeed = (0.005 + Math.random() * 0.002)
 
   spinDuration = parseInt(document.getElementById('timeSlider').value) * 60 * 1000;
   crazyMode = document.getElementById('crazyToggle').classList.contains('active');
@@ -766,21 +790,31 @@ function animLoop(ts) {
   const accelTime = 10000;
   let speedFactor;
 
+  // Change speed each 200ms
+  if (ts - lastSpeedChange > 200) {
+    targetSpeed = 0.8 + Math.random() * 0.2;
+    lastSpeedChange = ts;
+  }
+  // Smooth speed change
+  currentSpeed += (targetSpeed - currentSpeed) * 0.1;
+
   if (elapsed < accelTime) {
     speedFactor = Math.min(2 * elapsed / accelTime, 1);
   } else if (t < 0.80) {
-    speedFactor = 1;
+    //speedFactor = 1;
+    speedFactor = currentSpeed;
   } else {
     // ease out
     const p = (t - 0.80) / 0.20;
-    speedFactor = 1 - p * p;
+    speedFactor = currentSpeed * (1 - p * p);
   }
 
-  const baseSpeed = 0.006 * spinDir; // radians per ms at full
+  baseSpeed = maxSpeed * spinDir; // radians per ms at full
   const delta = lastTs ? (ts - lastTs) : 0;
   lastTs = ts;
 
-  currentAngle += baseSpeed * speedFactor * delta;
+  const microJitter = 0.98 + Math.random() * 0.04;
+  currentAngle += baseSpeed * speedFactor * delta * microJitter;
 
   // Crazy mode: random direction flip
   if (crazyMode && ts - lastDirChange > dirChangeInterval) {
@@ -809,6 +843,11 @@ function animLoop(ts) {
   document.getElementById('pointer').style.transform = `translateY(-50%) rotate(${pRot}deg)`;
 
   drawWheel();
+
+  // Randomization analysis
+  let deltaAngle = currentAngle - prevAngle;
+  totalRotation += Math.abs(deltaAngle);
+  prevAngle = currentAngle;
 
   if (t < 1) {
     animFrameId = requestAnimationFrame(animLoop);
@@ -840,6 +879,11 @@ function finishSpin() {
   rt.classList.add('winner');
 
   launchConfetti();
+
+  // Randomization analysis
+  const rotations = totalRotation / (Math.PI * 2);
+  console.log('Реальні оберти:', rotations);
+
 }
 
 // ── CONFETTI ───────────────────────────────────────────────────────────
