@@ -82,7 +82,6 @@
     max-width: 1100px;
   }
 
-  /* ── WHEEL SECTION ── */
   .wheel-section {
     display: flex;
     flex-direction: column;
@@ -101,7 +100,6 @@
     .wheel-wrap { width: 320px; height: 320px; }
   }
 
-  /* Outer decorative ring */
   .wheel-outer-ring {
     position: absolute;
     inset: -10px;
@@ -131,14 +129,12 @@
     filter: drop-shadow(0 0 50px rgba(255,107,53,0.6)) drop-shadow(0 0 80px rgba(0,212,255,0.3));
   }
 
-  /* Pointer */
   .pointer {
     position: absolute;
     top: 50%;
     right: -28px;
-    transform: translateY(-50%) rotate(0deg);
+    transform: translateY(-50%);
     z-index: 10;
-    transition: transform 0.08s ease;
   }
   .pointer svg {
     width: 56px;
@@ -146,7 +142,6 @@
     filter: drop-shadow(0 0 10px var(--accent));
   }
 
-  /* Center hub */
   .hub {
     position: absolute;
     top: 50%;
@@ -161,7 +156,6 @@
     border: 3px solid rgba(255,255,255,0.8);
   }
 
-  /* Result display */
   .result-box {
     background: var(--panel);
     border: 1px solid var(--border);
@@ -196,15 +190,12 @@
     transition: all 0.4s;
     word-break: break-word;
   }
-  .result-text.winner {
-    animation: winPulse 0.5s ease 3;
-  }
+  .result-text.winner { animation: winPulse 0.5s ease 3; }
   @keyframes winPulse {
     0%,100% { transform: scale(1); }
     50% { transform: scale(1.08); text-shadow: 0 0 40px rgba(255,215,0,1); }
   }
 
-  /* ── CONTROL PANEL ── */
   .panel {
     background: var(--panel);
     border: 1px solid var(--border);
@@ -234,9 +225,7 @@
     border-bottom: 1px solid var(--border);
   }
 
-  .field-group {
-    margin-bottom: 18px;
-  }
+  .field-group { margin-bottom: 18px; }
   .field-label {
     font-size: 0.75rem;
     letter-spacing: 0.15em;
@@ -261,10 +250,7 @@
     outline: none;
     line-height: 1.5;
   }
-  .games-textarea:focus {
-    border-color: var(--accent2);
-    box-shadow: var(--glow-blue);
-  }
+  .games-textarea:focus { border-color: var(--accent2); box-shadow: var(--glow-blue); }
 
   .file-btn {
     width: 100%;
@@ -280,20 +266,13 @@
     transition: all 0.2s;
     letter-spacing: 0.05em;
     margin-top: 8px;
+    display: block;
+    text-align: center;
   }
-  .file-btn:hover {
-    background: rgba(0,212,255,0.15);
-    border-color: var(--accent2);
-    box-shadow: var(--glow-blue);
-  }
+  .file-btn:hover { background: rgba(0,212,255,0.15); border-color: var(--accent2); box-shadow: var(--glow-blue); }
   input[type="file"] { display: none; }
 
-  /* Slider */
-  .slider-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
+  .slider-row { display: flex; align-items: center; gap: 12px; }
   input[type="range"] {
     flex: 1;
     -webkit-appearance: none;
@@ -305,8 +284,7 @@
   }
   input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 18px;
-    height: 18px;
+    width: 18px; height: 18px;
     border-radius: 50%;
     background: var(--accent);
     box-shadow: 0 0 8px rgba(255,107,53,0.6);
@@ -324,7 +302,6 @@
     text-align: right;
   }
 
-  /* Toggle */
   .toggle-row {
     display: flex;
     align-items: center;
@@ -338,10 +315,8 @@
     transition: background 0.2s;
   }
   .toggle-row:hover { background: rgba(255,255,255,0.05); }
-
   .toggle-switch {
-    width: 42px;
-    height: 22px;
+    width: 42px; height: 22px;
     background: var(--border);
     border-radius: 11px;
     position: relative;
@@ -358,21 +333,10 @@
     transition: transform 0.2s;
     box-shadow: 0 1px 4px rgba(0,0,0,0.4);
   }
-  .toggle-row.active .toggle-switch {
-    background: var(--accent);
-    box-shadow: 0 0 10px rgba(255,107,53,0.5);
-  }
+  .toggle-row.active .toggle-switch { background: var(--accent); box-shadow: 0 0 10px rgba(255,107,53,0.5); }
   .toggle-row.active .toggle-switch::after { transform: translateX(20px); }
+  .toggle-text { font-size: 0.92rem; font-weight: 600; letter-spacing: 0.05em; line-height: 1.3; }
 
-  .toggle-text {
-    font-size: 0.92rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    line-height: 1.3;
-  }
-  .toggle-emoji { font-size: 1.1rem; }
-
-  /* Spin button */
   .spin-btn {
     width: 100%;
     padding: 15px;
@@ -401,17 +365,9 @@
     transition: transform 0.4s;
   }
   .spin-btn:hover:not(:disabled)::before { transform: translateX(100%); }
-  .spin-btn:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(255,107,53,0.6);
-  }
-  .spin-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
-  }
+  .spin-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,107,53,0.6); }
+  .spin-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
-  /* Progress bar */
   .progress-wrap {
     margin-top: 12px;
     height: 4px;
@@ -438,9 +394,8 @@
     color: var(--dim);
     margin-top: 6px;
     height: 1.2em;
-    transition: color 0.3s;
   }
-  /* Stop button */
+
   .stop-btn {
     width: 100%;
     padding: 13px;
@@ -460,35 +415,16 @@
     display: none;
   }
   .stop-btn.visible { display: block; }
-  .stop-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(220,38,38,0.55);
-  }
+  .stop-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(220,38,38,0.55); }
 
-  /* Confetti canvas */
-  #confettiCanvas {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 100;
-  }
+  #confettiCanvas { position: fixed; inset: 0; pointer-events: none; z-index: 100; }
 
-  /* Scanlines effect */
   .scanlines {
-    position: fixed;
-    inset: 0;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0,0,0,0.03) 2px,
-      rgba(0,0,0,0.03) 4px
-    );
-    pointer-events: none;
-    z-index: 50;
+    position: fixed; inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+    pointer-events: none; z-index: 50;
   }
 
-  /* Add footer */
   .footer {
     margin-top: 30px;
     font-size: 0.75rem;
@@ -497,17 +433,8 @@
     text-align: center;
     z-index: 1;
   }
-
-  .footer a {
-    color: var(--accent2);
-    text-decoration: none;
-    transition: 0.2s;
-  }
-
-  .footer a:hover {
-    color: var(--gold);
-    text-shadow: 0 0 8px var(--accent2);
-  }
+  .footer a { color: var(--accent2); text-decoration: none; transition: 0.2s; }
+  .footer a:hover { color: var(--gold); text-shadow: 0 0 8px var(--accent2); }
 </style>
 </head>
 <body>
@@ -518,7 +445,6 @@
 <p class="subtitle">Spin the wheel — fate decides</p>
 
 <div class="main-layout">
-  <!-- WHEEL -->
   <div class="wheel-section">
     <div class="wheel-wrap" id="wheelWrap">
       <div class="wheel-outer-ring"></div>
@@ -539,7 +465,6 @@
     </div>
   </div>
 
-  <!-- PANEL -->
   <div class="panel">
     <div class="panel-title">⚙ Налаштування</div>
 
@@ -562,7 +487,7 @@
       <label class="field-label">Поведінка стрілки</label>
       <div class="toggle-row" id="crazyToggle">
         <div class="toggle-switch"></div>
-        <div class="toggle-text"><span class="toggle-emoji">🎲</span> Рандомна зміна напрямку</div>
+        <div class="toggle-text">🎲 Рандомна зміна напрямку</div>
       </div>
     </div>
 
@@ -577,38 +502,28 @@
 </div>
 
 <script>
+// ── CRYPTO RANDOM ──────────────────────────────────────────────────────
+function cryptoRand() {
+  const b = new Uint32Array(1);
+  crypto.getRandomValues(b);
+  return b[0] / 0xFFFFFFFF;
+}
+function cryptoRandN(n) {
+  const b = new Uint32Array(n);
+  crypto.getRandomValues(b);
+  return Array.from(b, v => v / 0xFFFFFFFF);
+}
+
 // ── STATE ──────────────────────────────────────────────────────────────
 const canvas = document.getElementById('wheel');
 const ctx = canvas.getContext('2d');
 
 let games = [];
 let spinning = false;
-let currentAngle = 0;      // radians
-let angularVelocity = 0;   // radians per ms
-let maxSpeed = null;
-let spinDir = 1;           // 1 = clockwise, -1 = counter
-let spinStart = null;
-let spinDuration = 3 * 60 * 1000;
-let targetAngle = 0;
-let crazyMode = false;
-let lastDirChange = 0;
-let dirChangeInterval = 0;
+let currentAngle = 0;
 let animFrameId = null;
 let lastTs = null;
-let pointerAngle = 0;      // visual pointer wobble angle
-let pointerDir = 1;
-let spinEndTimeout = null;
 
-// Smooth rotation speed change for better randomization
-let currentSpeed = 1;
-let targetSpeed = 1;
-let lastSpeedChange = 0;
-
-// Randomization analysis
-let totalRotation = 0;
-let prevAngle = 0;
-
-// Neon color palette for wheel segments
 const COLORS = [
   ['#1a0533','#c026d3'],['#001a2e','#0284c7'],['#1a0e00','#ea580c'],
   ['#001a1a','#0d9488'],['#1a0000','#dc2626'],['#1a1a00','#ca8a04'],
@@ -616,10 +531,9 @@ const COLORS = [
   ['#0a1a00','#65a30d'],['#001a1a','#0891b2'],['#1a0800','#d97706'],
 ];
 
-// ── RESPONSIVE CANVAS ──────────────────────────────────────────────────
+// ── CANVAS RESIZE ──────────────────────────────────────────────────────
 function resizeCanvas() {
-  const wrap = document.getElementById('wheelWrap');
-  const size = wrap.offsetWidth;
+  const size = document.getElementById('wheelWrap').offsetWidth;
   canvas.width = size;
   canvas.height = size;
   drawWheel();
@@ -628,8 +542,7 @@ function resizeCanvas() {
 // ── DRAW ───────────────────────────────────────────────────────────────
 function drawWheel() {
   const size = canvas.width;
-  const cx = size / 2, cy = size / 2;
-  const R = size / 2 - 4;
+  const cx = size / 2, cy = size / 2, R = size / 2 - 4;
   ctx.clearRect(0, 0, size, size);
 
   if (!games.length) {
@@ -650,10 +563,9 @@ function drawWheel() {
 
   for (let i = 0; i < n; i++) {
     const startA = currentAngle + i * slice;
-    const endA   = startA + slice;
+    const endA = startA + slice;
     const ci = i % COLORS.length;
 
-    // Segment fill
     const grad = ctx.createRadialGradient(cx, cy, R * 0.15, cx, cy, R);
     grad.addColorStop(0, COLORS[ci][0]);
     grad.addColorStop(1, COLORS[ci][1]);
@@ -664,29 +576,23 @@ function drawWheel() {
     ctx.fillStyle = grad;
     ctx.fill();
 
-    // Segment border
     ctx.strokeStyle = 'rgba(0,0,0,0.6)';
     ctx.lineWidth = 1.5;
     ctx.stroke();
 
-    // Bright arc
     ctx.beginPath();
     ctx.arc(cx, cy, R - 2, startA, endA);
     ctx.strokeStyle = COLORS[ci][1] + '55';
     ctx.lineWidth = 3;
     ctx.stroke();
 
-    // Text
     ctx.save();
     ctx.translate(cx, cy);
     ctx.rotate(startA + slice / 2);
-    const textR = R * 0.62;
-    ctx.translate(textR, 0);
-
-    const maxLen = Math.max(20, Math.floor(50 / n));
+    ctx.translate(R * 0.62, 0);
     let label = games[i];
+    const maxLen = Math.max(20, Math.floor(50 / n));
     if (label.length > maxLen) label = label.slice(0, maxLen - 1) + '…';
-
     const fontSize = Math.max(9, Math.min(16, (size * 0.032) * (8 / Math.max(n, 8))));
     ctx.font = `bold ${fontSize}px Rajdhani`;
     ctx.fillStyle = '#fff';
@@ -698,7 +604,6 @@ function drawWheel() {
     ctx.restore();
   }
 
-  // Inner circle decoration
   ctx.beginPath();
   ctx.arc(cx, cy, R * 0.12, 0, Math.PI * 2);
   ctx.fillStyle = '#0a0a0f';
@@ -708,36 +613,36 @@ function drawWheel() {
   ctx.stroke();
 }
 
-// ── PARSE GAMES ────────────────────────────────────────────────────────
+// ── PARSE ──────────────────────────────────────────────────────────────
 function parseGames(text) {
-  return text.split('\n')
-    .map(l => l.trim())
-    .filter(l => l.length > 0 && !l.startsWith('#'));
+  return text.split('\n').map(l => l.trim()).filter(l => l.length && !l.startsWith('#'));
 }
-
-function shuffle(arr) {
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-}
-
 function updateGames() {
   games = parseGames(document.getElementById('gamesInput').value);
-  //shuffle(games);
   drawWheel();
 }
 
-// ── SPIN LOGIC ─────────────────────────────────────────────────────────
+// ── WINNER DETECTION ───────────────────────────────────────────────────
+// Reads currentAngle directly — same logic as original, pointer is on the right.
 function getWinner() {
   if (!games.length) return null;
   const n = games.length;
   const slice = (Math.PI * 2) / n;
-  // Pointer is on the LEFT side (angle π). Offset by π to get correct segment.
-  let norm = ((-currentAngle) % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2);
-  const idx = Math.floor(norm / slice) % n;
-  return games[idx];
+  const norm = ((-currentAngle) % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2);
+  return games[Math.floor(norm / slice) % n];
 }
+
+// ── START SPIN ─────────────────────────────────────────────────────────
+let maxSpeed = 0;
+let spinDuration = 0;
+let spinStart = null;
+let spinDir = 1;
+let crazyMode = false;
+let lastDirChange = 0;
+let dirChangeInterval = Infinity;
+let currentSpeedMult = 1;
+let targetSpeedMult = 1;
+let lastSpeedChange = 0;
 
 function startSpin() {
   if (spinning || !games.length) return;
@@ -746,108 +651,80 @@ function startSpin() {
     return;
   }
 
-  // Reset randomization analysis
-  totalRotation = 0;
-  prevAngle = currentAngle;
-
   spinning = true;
   document.getElementById('spinBtn').disabled = true;
   document.getElementById('stopBtn').classList.add('visible');
   canvas.classList.add('spinning');
   document.getElementById('resultText').textContent = '🎲 Вибираємо…';
 
-  maxSpeed = (0.005 + Math.random() * 0.002)
-
+  // Crypto random speed in range 0.005–0.007 rad/ms
+  maxSpeed = 0.005 + cryptoRand() * 0.002;
   spinDuration = parseInt(document.getElementById('timeSlider').value) * 60 * 1000;
   crazyMode = document.getElementById('crazyToggle').classList.contains('active');
 
-  spinStart = performance.now();
+  spinDir = crazyMode ? (cryptoRand() > 0.5 ? 1 : -1) : 1;
+  lastDirChange = performance.now();
+  dirChangeInterval = crazyMode ? (2000 + cryptoRand() * 4000) : Infinity;
 
-  spinDir = 1;
-  if (crazyMode) {
-    spinDir = Math.random() > 0.5 ? 1 : -1;
-  }
-
-  lastDirChange = spinStart;
-  dirChangeInterval = crazyMode ? (2000 + Math.random() * 4000) : Infinity;
-
-  // Progress bar
-  const pw = document.getElementById('progressWrap');
-  const pb = document.getElementById('progressBar');
-  pw.classList.add('visible');
-  pb.style.width = '0%';
-
+  currentAngle = 0
+  currentSpeedMult = 1;
+  targetSpeedMult = 1;
+  lastSpeedChange = 0;
+  spinStart = null;
   lastTs = null;
+
+  document.getElementById('progressWrap').classList.add('visible');
+  document.getElementById('progressBar').style.width = '0%';
+
   if (animFrameId) cancelAnimationFrame(animFrameId);
   animFrameId = requestAnimationFrame(animLoop);
 }
 
+// ── ANIMATION LOOP ─────────────────────────────────────────────────────
 function animLoop(ts) {
   if (!spinning) return;
 
+  if (!spinStart) spinStart = ts;
   const elapsed = ts - spinStart;
   const t = Math.min(elapsed / spinDuration, 1);
   const accelTime = 10000;
+
+  // Smooth speed variation during cruise (purely visual, no effect on winner)
+  if (elapsed - lastSpeedChange > 250) {
+    targetSpeedMult = 0.9 + cryptoRand() * 0.2;
+    lastSpeedChange = elapsed;
+  }
+  currentSpeedMult += (targetSpeedMult - currentSpeedMult) * 0.06;
+
   let speedFactor;
-
-  // Change speed each 200ms
-  if (ts - lastSpeedChange > 200) {
-    targetSpeed = 0.8 + Math.random() * 0.2;
-    lastSpeedChange = ts;
-  }
-  // Smooth speed change
-  currentSpeed += (targetSpeed - currentSpeed) * 0.1;
-
   if (elapsed < accelTime) {
-    speedFactor = Math.min(2 * elapsed / accelTime, 1);
+    speedFactor = elapsed / accelTime;
   } else if (t < 0.80) {
-    //speedFactor = 1;
-    speedFactor = currentSpeed;
+    speedFactor = currentSpeedMult;
   } else {
-    // ease out
+    // Ease-out: cubic, from currentSpeedMult → 0
     const p = (t - 0.80) / 0.20;
-    speedFactor = currentSpeed * (1 - p * p);
+    speedFactor = currentSpeedMult * (1 - p * p * p);
   }
 
-  baseSpeed = maxSpeed * spinDir; // radians per ms at full
-  const delta = lastTs ? (ts - lastTs) : 0;
+  const delta = lastTs ? Math.min(ts - lastTs, 100) : 0;
   lastTs = ts;
 
-  const microJitter = 0.98 + Math.random() * 0.04;
-  currentAngle += baseSpeed * speedFactor * delta * microJitter;
+  currentAngle += maxSpeed * speedFactor * spinDir * delta;
 
-  // Crazy mode: random direction flip
+  // Crazy mode: direction flips
   if (crazyMode && ts - lastDirChange > dirChangeInterval) {
     spinDir *= -1;
     lastDirChange = ts;
-    dirChangeInterval = 1500 + Math.random() * 3500;
-    // Visual pointer kick
-    pointerDir = spinDir;
+    dirChangeInterval = 1500 + cryptoRand() * 3500;
   }
 
-  // Progress bar
+  // Progress UI
   document.getElementById('progressBar').style.width = (t * 100).toFixed(1) + '%';
   const secLeft = Math.ceil((spinDuration - elapsed) / 1000);
-  const tr = document.getElementById('timeRemaining');
-  tr.textContent = secLeft > 0 ? `⏱ ${secLeft}с залишилось` : '';
-  tr.className = 'time-remaining' + (secLeft <= 10 ? ' urgent' : '');
-
-  // Pointer wobble
-  if (crazyMode) {
-    pointerAngle += 0.08 * pointerDir * speedFactor;
-    if (Math.abs(pointerAngle) > 0.35) pointerDir *= -1;
-  } else {
-    pointerAngle *= 0.85; // settle
-  }
-  const pRot = 0 + pointerAngle * (180 / Math.PI);
-  document.getElementById('pointer').style.transform = `translateY(-50%) rotate(${pRot}deg)`;
+  document.getElementById('timeRemaining').textContent = secLeft > 0 ? `⏱ ${secLeft}с залишилось` : '';
 
   drawWheel();
-
-  // Randomization analysis
-  let deltaAngle = currentAngle - prevAngle;
-  totalRotation += Math.abs(deltaAngle);
-  prevAngle = currentAngle;
 
   if (t < 1) {
     animFrameId = requestAnimationFrame(animLoop);
@@ -856,6 +733,7 @@ function animLoop(ts) {
   }
 }
 
+// ── STOP (early) ───────────────────────────────────────────────────────
 function stopSpin() {
   if (!spinning) return;
   if (animFrameId) cancelAnimationFrame(animFrameId);
@@ -863,13 +741,13 @@ function stopSpin() {
   finishSpin();
 }
 
+// ── FINISH ─────────────────────────────────────────────────────────────
 function finishSpin() {
   spinning = false;
   canvas.classList.remove('spinning');
   document.getElementById('spinBtn').disabled = false;
   document.getElementById('stopBtn').classList.remove('visible');
   document.getElementById('timeRemaining').textContent = '';
-  document.getElementById('pointer').style.transform = 'translateY(-50%) rotate(0deg)';
 
   const winner = getWinner();
   const rt = document.getElementById('resultText');
@@ -880,10 +758,8 @@ function finishSpin() {
 
   launchConfetti();
 
-  // Randomization analysis
-  const rotations = totalRotation / (Math.PI * 2);
-  console.log('Реальні оберти:', rotations);
-
+  const rotations = Math.abs(currentAngle) / (Math.PI * 2);
+  console.log('Реальні оберти:', rotations.toFixed(2));
 }
 
 // ── CONFETTI ───────────────────────────────────────────────────────────
@@ -892,70 +768,56 @@ function launchConfetti() {
   const cctx = cc.getContext('2d');
   cc.width = window.innerWidth;
   cc.height = window.innerHeight;
-
+  const colors = ['#ff6b35','#ffd700','#00d4ff','#c026d3','#16a34a','#f43f5e'];
+  const rng = cryptoRandN(120 * 6);
+  let ri = 0;
   const particles = Array.from({length: 120}, () => ({
-    x: Math.random() * cc.width,
-    y: -20,
-    vx: (Math.random() - 0.5) * 4,
-    vy: 2 + Math.random() * 5,
-    size: 6 + Math.random() * 8,
-    color: ['#ff6b35','#ffd700','#00d4ff','#c026d3','#16a34a','#f43f5e'][Math.floor(Math.random()*6)],
-    rot: Math.random() * 360,
-    rotV: (Math.random()-0.5)*6,
-    shape: Math.random() > 0.5 ? 'rect' : 'circle'
+    x: rng[ri++] * cc.width, y: -20,
+    vx: (rng[ri++] - 0.5) * 4, vy: 2 + rng[ri++] * 5,
+    size: 6 + rng[ri++] * 8,
+    color: colors[Math.floor(rng[ri++] * colors.length)],
+    rot: rng[ri++] * 360, rotV: (cryptoRand()-0.5)*6,
+    shape: cryptoRand() > 0.5 ? 'rect' : 'circle'
   }));
-
   let start = null;
-  function confettiFrame(ts) {
+  function frame(ts) {
     if (!start) start = ts;
-    cctx.clearRect(0,0,cc.width,cc.height);
+    cctx.clearRect(0, 0, cc.width, cc.height);
     let alive = false;
     for (const p of particles) {
       p.x += p.vx; p.y += p.vy; p.rot += p.rotV; p.vy += 0.08;
       if (p.y < cc.height + 20) alive = true;
       cctx.save();
       cctx.translate(p.x, p.y);
-      cctx.rotate(p.rot * Math.PI/180);
-      cctx.globalAlpha = Math.max(0, 1 - (p.y / cc.height));
+      cctx.rotate(p.rot * Math.PI / 180);
+      cctx.globalAlpha = Math.max(0, 1 - p.y / cc.height);
       cctx.fillStyle = p.color;
-      if (p.shape === 'rect') {
-        cctx.fillRect(-p.size/2, -p.size/4, p.size, p.size/2);
-      } else {
-        cctx.beginPath();
-        cctx.arc(0, 0, p.size/2, 0, Math.PI*2);
-        cctx.fill();
-      }
+      if (p.shape === 'rect') cctx.fillRect(-p.size/2, -p.size/4, p.size, p.size/2);
+      else { cctx.beginPath(); cctx.arc(0,0,p.size/2,0,Math.PI*2); cctx.fill(); }
       cctx.restore();
     }
-    if (alive && ts - start < 5000) requestAnimationFrame(confettiFrame);
+    if (alive && ts - start < 5000) requestAnimationFrame(frame);
     else cctx.clearRect(0,0,cc.width,cc.height);
   }
-  requestAnimationFrame(confettiFrame);
+  requestAnimationFrame(frame);
 }
 
-// ── UI EVENTS ──────────────────────────────────────────────────────────
+// ── EVENTS ─────────────────────────────────────────────────────────────
 document.getElementById('gamesInput').addEventListener('input', updateGames);
-
 document.getElementById('timeSlider').addEventListener('input', function() {
   document.getElementById('timeVal').textContent = this.value;
 });
-
 document.getElementById('crazyToggle').addEventListener('click', function() {
   this.classList.toggle('active');
 });
-
 document.getElementById('fileInput').addEventListener('change', function() {
   const file = this.files[0];
   if (!file) return;
   const reader = new FileReader();
-  reader.onload = e => {
-    document.getElementById('gamesInput').value = e.target.result;
-    updateGames();
-  };
+  reader.onload = e => { document.getElementById('gamesInput').value = e.target.result; updateGames(); };
   reader.readAsText(file, 'UTF-8');
 });
 
-// Default games
 document.getElementById('gamesInput').value = `Minecraft
 Cyberpunk 2077
 The Witcher 3
@@ -973,12 +835,7 @@ resizeCanvas();
 </script>
 
 <footer class="footer">
-  Made by
-  <a href="https://github.com/KayTeeFive/GameRoulette" target="_blank">
-    KayTeeFive
-  </a>
+  Made by <a href="https://github.com/KayTeeFive/GameRoulette" target="_blank">KayTeeFive</a>
 </footer>
-
 </body>
 </html>
-
