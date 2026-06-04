@@ -643,6 +643,9 @@ let dirChangeInterval = Infinity;
 let currentSpeedMult = 1;
 let targetSpeedMult = 1;
 let lastSpeedChange = 0;
+let pointerAngle = 0;
+let pointerDir = 1;
+let lastPointerFlip = 0;
 
 function startSpin() {
   if (spinning || !games.length) return;
@@ -666,10 +669,13 @@ function startSpin() {
   lastDirChange = performance.now();
   dirChangeInterval = crazyMode ? (2000 + cryptoRand() * 4000) : Infinity;
 
-  currentAngle = 0
+  currentAngle = 0;
   currentSpeedMult = 1;
   targetSpeedMult = 1;
   lastSpeedChange = 0;
+  pointerAngle = 0;
+  pointerDir = 1;
+  lastPointerFlip = 0;
   spinStart = null;
   lastTs = null;
 
@@ -717,7 +723,21 @@ function animLoop(ts) {
     spinDir *= -1;
     lastDirChange = ts;
     dirChangeInterval = 1500 + cryptoRand() * 3500;
+    pointerDir = spinDir;
   }
+
+  // Pointer wobble (crazy mode only, purely cosmetic)
+  if (crazyMode) {
+    pointerAngle += 0.006 * pointerDir;
+    if (Math.abs(pointerAngle) > 0.35 || ts - lastPointerFlip > 500) {
+      pointerDir *= -1;
+      lastPointerFlip = ts;
+    }
+  } else {
+    pointerAngle *= 0.85;
+  }
+  document.getElementById('pointer').style.transform =
+    `translateY(-50%) rotate(${(pointerAngle * 180 / Math.PI).toFixed(2)}deg)`;
 
   // Progress UI
   document.getElementById('progressBar').style.width = (t * 100).toFixed(1) + '%';
@@ -748,6 +768,7 @@ function finishSpin() {
   document.getElementById('spinBtn').disabled = false;
   document.getElementById('stopBtn').classList.remove('visible');
   document.getElementById('timeRemaining').textContent = '';
+  document.getElementById('pointer').style.transform = 'translateY(-50%) rotate(0deg)';
 
   const winner = getWinner();
   const rt = document.getElementById('resultText');
